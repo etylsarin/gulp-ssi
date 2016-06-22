@@ -1,0 +1,32 @@
+{
+  "name": "gulp-ssi",
+  "version": "0.1.0",
+  "description": "Server Side Includes parser plugin for gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "gulpplugin",
+    "ssi",
+    "server side incude",
+    "server side incudes",
+    "static site generator"
+  ],
+  "author": "Filip Mares <maresf@gmail.com> (https://github.com/etylsarin)",
+  "repository": "etylsarin/gulp-ssi",
+  "license": "MIT",
+  "dependencies": {
+	"gulp-util": "^3.0.7",
+    "object-assign": "^4.1.0",
+    "styledocdown": "^0.1.5",
+    "through2": "^2.0.1"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  }
+}
