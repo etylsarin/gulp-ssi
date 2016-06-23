@@ -3,6 +3,16 @@
 
 > Server Side Includes parser plugin for [gulp](https://github.com/wearefractal/gulp)
 
+Works with both include types
+
+```html
+<!--#include file="includes/navigation.html" -->
+```
+
+```html
+<!--#include virtual="../templates/navigation.html" -->
+```
+
 ## Usage
 
 First, install `gulp-ssi` as a development dependency:
@@ -17,9 +27,19 @@ Then, add it to your `gulpfile.js`:
 var ssi = require("gulp-ssi");
 
 gulp.src("./src/*.ext")
-	.pipe(ssi())
+	.pipe(ssi({
+		root: '/my-pages'
+	}))
 	.pipe(gulp.dest("./dist"));
 ```
+
+## Options
+
+### root (optional)
+Type: `String`  
+Default: File directory
+
+Set the location where the linked files are hosted.
 
 ## License
 
