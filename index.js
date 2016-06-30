@@ -7,8 +7,10 @@ var path = require('path'),
 var PLUGIN_NAME = 'gulp-ssi';
 
 module.exports = function (options) {
+	var freshRun = true;
 	return through.obj(function (file, enc, cb) {
 		var self = this,
+			ext = path.extname(file.path).slice(1),
 			cfg = {
 				root: path.dirname(file.path),
 				fileName: path.basename(file.path)
@@ -27,7 +29,7 @@ module.exports = function (options) {
 			return cb();
 		}
 
-		ssiparser(file.contents.toString(), cfg, function (err, data) {
+		ssiparser(file.contents.toString(), cfg, freshRun, function (err, data) {
 			if (err) {
 				self.emit('error', new gutil.PluginError(PLUGIN_NAME, err, {fileName: file.path}));
 				return cb();
@@ -36,11 +38,17 @@ module.exports = function (options) {
 			if (data) {
 				if (file.isBuffer()) {
 					file.contents = new Buffer(data);
+					if (cfg.ext && ext !== cfg.ext) {
+						file.path = file.path.slice(0, -(ext.length));
+						file.path += cfg.ext;
+					}
 				}
 				self.push(file);
 			}
 
 			cb();
 		});
+
+		freshRun = false;
 	});
 };
