@@ -20,7 +20,7 @@ module.exports = function (options) {
 			cfg = oAssign(cfg, options);
 		}
 		
-		cfg = oAssign(cfg, {relative: cfg.root});
+		cfg = oAssign(cfg, {relative: path.dirname(file.path)});
 		
 		if (file.isStream()) {
 			this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'));
