@@ -19,7 +19,9 @@ module.exports = function (options) {
 		if (typeof options === 'object') {
 			cfg = oAssign(cfg, options);
 		}
-
+		
+		cfg = oAssign(cfg, {relative: cfg.root});
+		
 		if (file.isStream()) {
 			this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'));
 			return cb();
