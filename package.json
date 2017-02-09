@@ -1,6 +1,6 @@
 {
   "name": "gulp-ssi",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Server Side Includes parser plugin for gulp",
   "main": "index.js",
   "scripts": {
@@ -17,10 +17,8 @@
   "repository": "etylsarin/gulp-ssi",
   "license": "MIT",
   "dependencies": {
-	"gulp-util": "^3.0.7",
-    "object-assign": "^4.1.0",
-    "styledocdown": "^0.1.5",
-    "through2": "^2.0.1"
+		"gulp-util": "^3.0.8",
+    "through2": "^2.0.3"
   },
   "devDependencies": {
     "mocha": "*"
