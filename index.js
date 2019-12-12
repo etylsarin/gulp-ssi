@@ -1,5 +1,5 @@
 var path = require('path'),
-	gutil = require('gulp-util'),
+    PluginError = require('plugin-error');
 	through = require('through2'),
 	ssiparser = require('./lib/ssiparser');
 
@@ -18,7 +18,7 @@ module.exports = function (options) {
 		}
 
 		if (file.isStream()) {
-			this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'));
+			this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
 			return cb();
 		}
 
@@ -27,13 +27,13 @@ module.exports = function (options) {
 		}
 		ssiparser(file.contents.toString(), path.join(cfg.root, cfg.dir), freshRun, function (err, data) {
 			if (err) {
-				self.emit('error', new gutil.PluginError(PLUGIN_NAME, err, {fileName: file.path}));
+				self.emit('error', new PluginError(PLUGIN_NAME, err, {fileName: file.path}));
 				return cb();
 			}
 
 			if (data) {
 				if (file.isBuffer()) {
-					file.contents = new Buffer(data);
+					file.contents = Buffer.from(data);
 				}
 				self.push(file);
 			}
