@@ -56,5 +56,5 @@ See the tests for more information.
 [npm-url]: https://npmjs.org/package/gulp-ssi
 [npm-image]: https://badge.fury.io/js/gulp-ssi.png
 
-[travis-url]: http://travis-ci.org/etylsarin/gulp-ssi
-[travis-image]: https://secure.travis-ci.org/etylsarin/gulp-ssi.png?branch=master
+[travis-url]: http://travis-ci.org/rmoskal/gulp-ssi
+[travis-image]: https://secure.travis-ci.org/rmoskal/gulp-ssi.png?branch=master
