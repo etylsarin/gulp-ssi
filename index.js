@@ -5,17 +5,13 @@ var path = require('path'),
 
 var PLUGIN_NAME = 'gulp-ssi';
 
-module.exports = function (options) {
-	var freshRun = true;
+module.exports = function (options={}) {
+	let freshRun = true;
 	return through.obj(function (file, enc, cb) {
-		var self = this,
-			cfg = path.parse(path.relative(file.base, file.path));
-
+		const self = this
+		const cfg = path.parse(path.relative(file.base, file.path));
 		cfg.root = path.relative(file.cwd, file.base);
-
-		if (typeof options === 'object' && typeof options.root === 'string') {
-			cfg.root = options.root;
-		}
+		cfg.realPath = path.join(cfg.root, cfg.dir)
 
 		if (file.isStream()) {
 			this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
@@ -25,7 +21,7 @@ module.exports = function (options) {
 		if (file.isNull()) {
 			return cb();
 		}
-		ssiparser(file.contents.toString(), path.join(cfg.root, cfg.dir), freshRun, function (err, data) {
+		ssiparser(file.contents.toString(), cfg.realPath , options.root, freshRun, function (err, data) {
 			if (err) {
 				self.emit('error', new PluginError(PLUGIN_NAME, err, {fileName: file.path}));
 				return cb();

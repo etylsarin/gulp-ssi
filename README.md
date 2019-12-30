@@ -13,6 +13,12 @@ Works with both include types
 <!--#include virtual="../templates/navigation.html" -->
 ```
 
+And now also correctly interprets directives from the root of a site 
+
+```html
+<!--#include file="/includes/navigation.html" -->
+```
+
 ## Usage
 
 First, install `gulp-ssi` as a development dependency:
@@ -39,7 +45,9 @@ gulp.src("./src/*.ext")
 Type: `String`  
 Default: File directory
 
-Set the location where the linked files are hosted.
+Set the location where the linked files are hosted. I've preserved this feature to prevent breaking existing clients. It works fine, but it makes assumptions that all relative links will resolve 
+
+See the tests for more information.
 
 ## License
 
