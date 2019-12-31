@@ -21,8 +21,6 @@ module.exports = function (options={}) {
 		if (file.isNull()) {
 			return cb();
 		}
-
-		console.log(file.path)
 		ssiparser(file.contents.toString(), cfg.realPath , options.root, freshRun, function (err, data) {
 			if (err) {
 				self.emit('error', new PluginError(PLUGIN_NAME, err, {fileName: file.path}));
