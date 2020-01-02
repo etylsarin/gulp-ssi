@@ -29,6 +29,18 @@ describe('ssi parser does correct replacements', function () {
             contents: Buffer.from('<!--#include file="one.inc" -->\n')
         }, '<p>This is the first</p>\n')
     })
+    it('handles includes with virtual key', function () {
+        tester({
+            path: 'test/samples/hello.html',
+            contents: Buffer.from('<!--#include virtual="one.inc" -->\n')
+        }, '<p>This is the first</p>\n')
+    })
+    it('handles includes with other attributes', function () {
+        tester({
+            path: 'test/samples/hello.html',
+            contents: Buffer.from('<!--#include file="one.inc" stub="empty" -->\n')
+        }, '<p>This is the first</p>\n')
+    })
     it('handles dot relative includes', function () {
         tester({
             path: 'test/samples/deeper/hello.html',
