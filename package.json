@@ -1,6 +1,6 @@
 {
   "name": "gulp-ssi",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Server Side Includes parser plugin for gulp",
   "main": "index.js",
   "scripts": {
